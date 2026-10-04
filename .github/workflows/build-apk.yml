@@ -1,4 +1,4 @@
-name: Build Dean Fish Hunt APK
+name: Build Dean Fish Hunt V2 APK
 on:
   push:
     branches: [ dean-fish-hunt ]
@@ -35,12 +35,12 @@ jobs:
         run: gradle :app:assembleDebug --stacktrace
 
       - name: Rename APK
-        run: cp app/build/outputs/apk/debug/app-debug.apk DeanFishHunt.apk
+        run: cp app/build/outputs/apk/debug/app-debug.apk DeanFishHunt-V2.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Dean-Fish-Hunt-APK
-          path: DeanFishHunt.apk
+          name: Dean-Fish-Hunt-V2-APK
+          path: DeanFishHunt-V2.apk
           if-no-files-found: error
           retention-days: 7

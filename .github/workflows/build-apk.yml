@@ -1,7 +1,7 @@
-name: Build Spesa APK
+name: Build Dean Fish Hunt APK
 on:
   push:
-    branches: [ main ]
+    branches: [ dean-fish-hunt ]
   workflow_dispatch:
 
 permissions:
@@ -23,7 +23,6 @@ jobs:
       - name: Install Android SDK packages
         shell: bash
         run: |
-          echo "ANDROID_SDK_ROOT=$ANDROID_SDK_ROOT"
           yes | "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" --licenses >/dev/null || true
           "$ANDROID_SDK_ROOT/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35" "build-tools;35.0.0"
 
@@ -36,12 +35,12 @@ jobs:
         run: gradle :app:assembleDebug --stacktrace
 
       - name: Rename APK
-        run: cp app/build/outputs/apk/debug/app-debug.apk Spesa.apk
+        run: cp app/build/outputs/apk/debug/app-debug.apk DeanFishHunt.apk
 
       - name: Upload APK
         uses: actions/upload-artifact@v4
         with:
-          name: Spesa-APK
-          path: Spesa.apk
+          name: Dean-Fish-Hunt-APK
+          path: DeanFishHunt.apk
           if-no-files-found: error
           retention-days: 7
